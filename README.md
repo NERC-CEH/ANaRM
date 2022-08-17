@@ -16,8 +16,9 @@ Where "Qp" is the peak flow, "Cr" is a dimensionless routing coefficient set as 
 * options.inp : example basic options file 
 * runoff.csv : a table of Cv values for each land class
 * OUTLETS : An example of how "gauging" locations of interest can be specified.
-* LC_28039.tif : This is a modified version of the 10m resolution open access ESA Worldcover (Zanaga et al., 2020) for the Rea catchment, Birmingham. See Miller et al 2022 for details of modifications.
-* LIDAR_outf1.tif : Out flow directions. These were derived from LIDAR Composite DTM 2019 using the "Fill" and "Flow Directions" functions available with arcMap. BE AWARE - part of the catchment was not captured in the original elevation data. These flow directions are only provided as an example only. They were not used in Miller et al 2022 which instead used NEXTMap (Intermap Technologies, 2007). 
+* LC_28039.tif : This is a modified version of the 10m resolution open access (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) ESA Worldcover (Zanaga et al., 2020, https://esa-worldcover.org/en/data-access) for the Rea catchment, Birmingham. See Miller et al 2022 for details of modifications.
+* LIDAR_outf1.tif : Out flow directions. These were derived from LIDAR Composite DTM 2019 (Open Government Licence v3.0, https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) using the "Fill" and "Flow Directions" functions available with arcMap. 
+!!BE AWARE!! - part of the catchment was not captured in the LIDAR elevation data. These flow directions are only provided as an example only. They were not used in Miller et al 2022 which instead used NEXTMap (Intermap Technologies, 2007). 
 * LC_GREEN_28039.tif : An example of a "GREEN" scenario based on LC_28039.tif.
 * PONDS.tif : An example of how additional ponds may be specified (for a "GREEN" scenario) if useLcmScnForFarlScn  = F
 
@@ -25,9 +26,9 @@ Where "Qp" is the peak flow, "Cr" is a dimensionless routing coefficient set as 
 
 Basic example:
 This is a basic example that will use the "BASE" landcover map and the flow directions to create the following
-- XXXX (peak flows for BASE scenario) in m^3/s.
-- csv (flow data at locations specified in OUTLETS)
-- FARL.tif (gridded FARL values - using the slightly modified definition specified in Miller 2022)
+- flow_base_scenario.tif (peak flows for BASE scenario) in m^3/s.
+- rea_checkpoints_example_OUTPUT.csv (flow data at locations specified in OUTLETS)
+- farl_base.tif (gridded FARL values - using the slightly modified definition specified in Miller 2022)
 - CCAR.tif (Cumulative Catchment ARea) in units of the grid cell resoution (10mx10).
 
 1. Place ANaRM_main.R, ANaRM_functions.R, options.inp and runoff.csv in a base directory. Create subdirectories "input", "output1", and "output2".
