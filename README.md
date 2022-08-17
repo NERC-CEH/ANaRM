@@ -18,7 +18,7 @@ Where "Qp" is the peak flow, "Cr" is a dimensionless routing coefficient set as 
 * OUTLETS : An example of how "gauging" locations of interest can be specified.
 * LC_28039.tif : This is a modified version of the 10m resolution open access ESA Worldcover (Zanaga et al., 2020) for the Rea catchment, Birmingham. See Miller et al 2022 for details of modifications.
 * LIDAR_outf1.tif : Out flow directions. These were derived from LIDAR Composite DTM 2019 using the "Fill" and "Flow Directions" functions available with arcMap. BE AWARE - part of the catchment was not captured in the original elevation data. These flow directions are only provided as an example only. They were not used in Miller et al 2022 which instead used NEXTMap (Intermap Technologies, 2007). 
-* LC_GREEN_28039.tif : An example of a "GREEN" scenario.
+* LC_GREEN_28039.tif : An example of a "GREEN" scenario based on LC_28039.tif.
 * PONDS.tif : An example of how additional ponds may be specified (for a "GREEN" scenario) if useLcmScnForFarlScn  = F
 
 ~~~~~~ Example usage ~~~~~~
