@@ -1,90 +1,92 @@
-# This is an options file set up for an initial run (i.e. Stage 1 of Miller, Vesuviano, Wallbank, Fletcher, Jones Submitted 2022) 
+# This is an options file set up for an initial run (i.e. Stage 1 of Miller, Vesuviano, Wallbank, Fletcher, Jones. Submitted 2022) 
 # This line is a comment because it is preceeded by #
-# The  variable names used here are identical to those in the R-code
-# Ensure this file is in the working directory pointed to by the "getwd()" comand in R, or else edit the optionsFN variable in the main R-code.
-# John R Wallbank Aug 2022
+# The variable names used here are identical to those in the R-code
+# Ensure this file is in the working directory pointed to by the "getwd()" command in R, or edit the optionsFN variable in the main R-code.
+# John R Wallbank, Aug 2022
 
 ###             Input and output grids.            ###
-# All get cropped to lcmFN
+# All are cropped to lcmFN
 
 #                         ** Grid description **                                                          **FileName variable**
-# Input grids are: [recommended for - Optional "O", Initial run "I" (Stage 1), Subsequent run "S" (Stage 2)]
-# 1a [ IS]. Outflow directions. Integers specifying 1 of the 8 neighboring cells following the esri convention. -> outfFN
-# 1b [O S]. CCAR (Cummulative Catchment Area). Can calculate from outfFN. Integer number of upstream cells      -> ccarFN
-# 2a [ IS]. LCM for "BASE" scenario. Used for (i) run-off values, (ii) FARL, (iii) cropping grids. Integer.     -> lcmFN
-# 2b [O S]. Summed Runoff (over all upstream cells). Overrules calc from LCM. Integer, summed percentages.      -> roffSumFN
-# 2c [O S]. LCM for GREEN scenario. Used for GREEN runoff values, and FARL (unless lakesScnFN specified)    -> lcmScnFN
-# 3a [O S]. FARL, imported for BASE scenario. Over-rides that calculated using lakeFN. Float, 0 - 1.            -> farlFN
-# 3b [O S]. Grid specifying new lakes only using positive value for GREEN scenario. useLcmScnForFarlScn=F  -> lakesScnFN
+# Input grids are: ["O" - Optional; "I" - Recommended for Initial run (Stage 1); "S" - Recommended for Subsequent run (Stage 2)]
+# 1a [ IS]. Outflow directions. Integers specifying 1 of the 8 neighboring cells following the esri convention.                ->   outfFN
+# 1b [O S]. CCAR (Cummulative Catchment Area). Optional, as can be calculated from outfFN. Integer number of upstream cells.   ->   ccarFN
+# 2a [ IS]. LCM for "BASE" scenario. Used for (i) runoff values, (ii) FARL, (iii) cropping grids. Integer.                     ->   lcmFN
+# 2b [O S]. Summed Runoff (over all upstream cells). Overrules calculation from LCM. Integer, summed percentages.              ->   roffSumFN
+# 2c [O S]. LCM for GREEN scenario. Used for GREEN runoff values, and FARL (unless lakesScnFN is specified)                    ->   lcmScnFN
+# 3a [O S]. FARL, imported for BASE scenario. Overrules that calculated using lakeFN. Float, range 0 - 1.                      ->   farlFN
+# 3b [O S]. Grid specifying new lakes only using positive value for GREEN scenario. useLcmScnForFarlScn = F.                   ->   lakesScnFN
 
 
 #Output grids are as follows. Those exported on subsequent (GREEN scenario) runs are for diagnostic purposes only.
-# 1  [OI ]. CCAR (BASE), [in units of number of grid cells]            -> ccarOutFN
-# 2a [OI ]. Summed Runoff (BASE) [in units of summed percentage]       -> outRoffSumFN
-# 2b [O S]. Summed Runoff (GREEN) [in units of summed percentage]   -> outRoffScnSumFN
-# 3a [OI ]. FARL (BASE)                                                -> farlOutFN
-# 3b [O S]. FARL (GREEN)                                            -> farlScnOutFN
-# 4a [OIS]. flow  (BASE)      [m3/s]                                   -> flowBaseFN 
-# 4b [O S]. flow  (GREEN)  [m3/s]                                   -> flowScnFN 
-# 4c [O S]. flow ratio GREEN/BASE [fraction, q_scn/qbase - 1]       -> flowRatioFN
+# 1  [OI ]. CCAR (BASE), [in units of number of grid cells]         ->   ccarOutFN
+# 2a [OI ]. Summed Runoff (BASE) [in units of summed percentage]    ->   outRoffSumFN
+# 2b [O S]. Summed Runoff (GREEN) [in units of summed percentage]   ->   outRoffScnSumFN
+# 3a [OI ]. FARL (BASE) [-]                                         ->   farlOutFN
+# 3b [O S]. FARL (GREEN) [-]                                        ->   farlScnOutFN
+# 4a [OIS]. flow (BASE) [m3/s]                                      ->   flowBASEFN 
+# 4b [O S]. flow (GREEN) [m3/s]                                     ->   flowScnFN
+# 4c [O S]. flow ratio GREEN/BASE [fraction, q_scn/qBASE - 1]       ->   flowRatioFN
 
 
 
 
 
-##directory containing adapted_NFM_rational_method_functions.R. Defaults to that specified by "getwd()" comand in R. All other directoriese are relative to this.  
-baseDir = 
+## Directory containing adapted_NFM_rational_method_functions.R. Defaults to that specified by "getwd()" command in R. All other directories are relative to this.
+BASEDir = 
 
 
-##Run-off options: 
-iRain    = 3.54 #rain intensity (mm/hr)
-Cr       = 1.3  #over all multiplication factor on flow- some parts of catchment route faster to downstream than others
-runoffFN = runoff.csv #A csv with headings "wrdclass,cv,description". cv is runoff in percentage (0-100).
+## Runoff options: 
+iRain    = 3.54       # Rain intensity [mm/hr].
+Cr       = 1.3        # Routing coefficient. A multiplication factor on peak flow - some parts of a catchment route faster to downstream than others.
+runoffFN = runoff.csv # A csv with headings "wrdclass,cv,description". cv is runoff fraction of land class specified in wrdclass in percentage (0-100).
 
 
-##FARL options :
-calcBaseFARL = T      #if FALSE then don't calculate BASE farl - use a grid of ones (i.e no FARL effect).
-lakeId       = 8      #integer specifying cell is "water" in wldcover grid. ASSUMED TO BE LAKE/POND ETC NOT RIVER OR CANAL.
-farlOpt      = FARL   #FARL2-SL & FARL2-GL can be specified, use with farlPower ~ 1 (should give a beter representation of small ponds, FARL2-GL is the most general) 
-farlPower    = 3.445  #river flows are proportional to FARL^farlPower
+## FARL options :
+calcBASEFARL = T      # If FALSE then don't calculate BASE FARL - use a grid of ones (i.e no FARL effect) instead.
+lakeId       = 8      # Integer specifying that a cell is "water" in wldcover grid. WATER IS ASSUMED TO BE LAKE/POND ETC., NOT RIVER OR CANAL.
+farlOpt      = FARL   # FARL calculation method. FARL2-SL & FARL2-GL can also be specified - use with farlPower ~ 1 (should give a better representation of small ponds, FARL2-GL is the most general).
+farlPower    = 3.445  # Peak flows in each grid cell are scaled by FARL^farlPower.
 
 
 ## Grids:
-#compulasary grids: 
-res       = 10                        #resolution of all grids, units of meters assumed. 
-outfFN    = input/LIDAR_outf1.tif   #flow-directions, esri format 1,2,4,..128 (clockwise from E)
-lcmFN     = input/LC_28039.tif #base land cover
+#compulsory grids: 
+res       = 10                     # Resolution of all grids, units of metres assumed.
+outfFN    = input/LIDAR_outf1.tif  # Flow directions (downstream), esri format: 1,2,4,8,16,32,64,128 clockwise from East.
+lcmFN     = input/LC_28039.tif     # BASE land cover.
 
-#OUTF & ccar grids:
-ccarFN    =                   #Load ccar from here if specified (else calculate from outfFN).
-ccarOutFN = output1/CCAR.tif  #Export ccar for next time
-  
-#runoff grids:
-#base
-roffSumFN       =     #Load precomputed roffSum (sum of run-off over catchments) (else calculate from LCM + runoffFN). 
-outRoffSumFN    = output1/base_runoff_ratio_sum_INT.tif  #Export path for roffSum (summed roff for base) if specified. 
-#scenario
-lcmScnFN        =       #Load a lcm change scenario if specified
-outRoffScnSumFN =       
-#Export path for roffScnSum (summed roff for scenario) if specified. 
- 
-#FARL grids. Base farl uses water in base LCM (lcmFN):
-#base
-farlFN       =                            #Import base farl. Over-rides calculation from base land cover.
-farlOutFN    = output1/farl_base.tif      #Export base farl 
-#scenairo
-lakesScnFN   =               #scenario lakes - only additional lakes are specified by non-zero integers
-useLcmScnForFarlScn  = F     #Calculate scenario FARL from scenairo LCM (not lakesScnFN)
-farlScnOutFN =               #Export farl for lakes scenario 
+# OUTF & CCAR grids:
+ccarFN    =                        # Load CCAR from here if specified (else calculate from outfFN).
+ccarOutFN = output1/CCAR.tif       # Export path for CCAR, for repeat runs over the same study area.
 
-  
-##export flow grids:
-flowBaseFN   = output1/flow_base_scenario.tif   #Export path for base scenario flow. 
-flowScnFN    =                                  #Export path for new scenario flow. 
-flowRatioFN  =                                  #Export path for ratio of flows (green/base )
- 
 
-#optional outlets of interest:
-outletsInFN  = input/rea_checkpoints_example.csv # csv with X and Y coords of outlets and possibly info
-outletsOutFN = output1/rea_checkpoints_example_OUTPUT.csv # output csv of flows at the specified outlets here
+# Runoff grids:
+# BASE
+roffSumFN       =                  # Load precomputed roffSum (sum of runoff over catchments), else calculate from LCM and runoffFN.
+outRoffSumFN    = output1/BASE_runoff_ratio_sum_INT.tif  # Export path for roffSum (summed roff for BASE) if specified.
 
+# Scenario
+lcmScnFN        =                  # Load a LCM land-use change scenario if specified.
+outRoffScnSumFN =                  # Export path for roffScnSum (summed roff for scenario) if specified.
+
+
+# FARL grids. BASE FARL uses water in BASE LCM (lcmFN):
+# BASE
+farlFN          =                            # Import BASE FARL. Overrules calculation from BASE land cover.
+farlOutFN       = output1/farl_BASE.tif      # Export BASE FARL.
+
+# Scenario
+lakesScnFN           =             # Scenario lakes - only additional lakes are specified, using non-zero integers.
+useLcmScnForFarlScn  = F           # Calculate Scenario FARL from Scenairo LCM (not lakesScnFN).
+farlScnOutFN         =             # Export FARL for lakes Scenario.
+
+
+## Export flow grids:
+flowBASEFN      = output1/flow_BASE_scenario.tif   # Export path for BASE Scenario flow.
+flowScnFN       =                                  # Export path for new Scenario flow.
+flowRatioFN     =                                  # Export path for ratio of flows (GREEN/BASE).
+
+
+# Optional outlets of interest:
+outletsInFN  = input/rea_checkpoints_example.csv           # csv with X and Y co-ordinates of outlets and possibly info.
+outletsOutFN = output1/rea_checkpoints_example_OUTPUT.csv  # Path to output csv of flows at the outlets specified in the file pointed to by outletsInFN.
