@@ -19,7 +19,7 @@ Where "Qp" is the peak flow, "Cr" is a dimensionless routing coefficient set as 
 * LC_28039.tif : This is a modified version of the 10m resolution open access ESA Worldcover (Zanaga et al., 2020) for the Rea catchment, Birmingham. See Miller et al 2022 for details of modifications.
 * LIDAR_outf1.tif : Out flow directions. These were derived from LIDAR Composite DTM 2019 using the "Fill" and "Flow Directions" functions available with arcMap. BE AWARE - part of the catchment was not captured in the original elevation data. These flow directions are only provided as an example only. They were not used in Miller et al 2022 which instead used NEXTMap (Intermap Technologies, 2007). 
 * LC_GREEN_28039.tif : An example of a "GREEN" scenario.
-* PONDS.tif : An example of how additional ponds may be specified (for a "GREEN" scenario) if not done so in ....
+* PONDS.tif : An example of how additional ponds may be specified (for a "GREEN" scenario) if useLcmScnForFarlScn  = F
 
 ~~~~~~ Example usage ~~~~~~
 
@@ -30,9 +30,9 @@ This is a basic example that will use the "BASE" landcover map and the flow dire
 - FARL.tif (gridded FARL values - using the slightly modified definition specified in Miller 2022)
 - CCAR.tif (Cumulative Catchment ARea) in units of the grid cell resoution (10mx10).
 
-1. Place ANaRM_main.R, ANaRM_functions.R, options.inp and runoff.csv in a base directory. Create subdirectories "inputs", "output1", and "output2".
-2. Place  LC_28039.tif, LIDAR_outf1.tif **OUTLETS** in the "inputs" directory (LC_GREEN_28039.tif & PONDS.tif can go here also).
-3. Check the base directory created in step 1 is the working directory (use getwd()) that R is using, our else edit XXXXXXXXX and YYYYYYYYY.
+1. Place ANaRM_main.R, ANaRM_functions.R, options.inp and runoff.csv in a base directory. Create subdirectories "input", "output1", and "output2".
+2. Place  LC_28039.tif, LIDAR_outf1.tif **OUTLETS** in the "input" directory (LC_GREEN_28039.tif & PONDS.tif can go here also).
+3. Check the base directory created in step 1 is the working directory (getwd() in R) that R is using, our else edit baseDir in options.inp and optionsFN in ANaRM_main.R. 
 4. Run ANaRM_main.R outputs will be created in the output1 directory.
 
 Advanced usage:
