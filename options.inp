@@ -82,7 +82,7 @@ farlScnOutFN         =             # Export FARL for lakes Scenario.
 
 
 ## Export flow grids:
-flowBASEFN      = output1/flow_BASE_scenario.tif   # Export path for BASE Scenario flow.
+flowBaseFN      = output1/flow_BASE_scenario.tif   # Export path for BASE Scenario flow.
 flowScnFN       =                                  # Export path for new Scenario flow.
 flowRatioFN     =                                  # Export path for ratio of flows (GREEN/BASE).
 
