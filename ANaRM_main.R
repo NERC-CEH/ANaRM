@@ -63,6 +63,7 @@ readOptions<-function(optionsFN,verbose=F){
 
 ################### read options #####################
 optDF = readOptions(optionsFN,verbose=T)
+cat("\n**** Running with options file:",optionsFN,"****\n\n")
 source(paste0(baseDir,"/ANaRM_functions.R"))
 
 #convert rain intensity to m^3 s^-1 (= mm/hr * 1/60^2 hr/s * 1/1000 m/mm )
