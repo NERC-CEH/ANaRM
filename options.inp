@@ -43,7 +43,7 @@ runoffFN = runoff.csv # A csv with headings "wrdclass,cv,description". cv is run
 
 
 ## FARL options :
-calcBASEFARL = T      # If FALSE then don't calculate BASE FARL - use a grid of ones (i.e no FARL effect) instead.
+calcBaseFARL = T      # If FALSE then don't calculate BASE FARL - use a grid of ones (i.e no FARL effect) instead.
 lakeId       = 8      # Integer, or R-style list of (e.g. c(8,9)), specifying that a cell is "water". WATER IS ASSUMED TO BE LAKE/POND ETC., NOT RIVER OR CANAL.
 farlOpt      = FARL   # FARL calculation method. FARL2-SL & FARL2-GL can also be specified - use with farlPower ~ 1 (should give a better representation of small ponds, FARL2-GL is the most general).
 farlPower    = 3.445  # Peak flows in each grid cell are scaled by FARL^farlPower.
