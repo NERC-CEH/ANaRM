@@ -70,7 +70,7 @@ iRain = iRain*( (1/60^2) * (1/1000))
 
 #load runoff coef (percentage) for each wrldcover class
 cvDF = read.csv(runoffFN)
-if(cvDF[lakeId,"cv"]!=100)print("WARNING: cv for lake is not 100")
+if(any(cvDF[lakeId,"cv"]!=100))print("WARNING: cv for lake is not 100")
 
 
 ############# Part 1 ###############
