@@ -8,7 +8,7 @@ printp<-function(...)print(paste0(...))
 lcmToRoff <-function(lcmMP,cvDF){
   roffMP = lcmMP
   if( any(! unique(lcmMP[!is.na(lcmMP)]) %in% cvDF[,"wrdclass"])) stop("Unrecognised classes in LCM. cvDF needs updating? ")
-  for( i  in cvDF[,"wrdclass"]){
+  for( i  in 1:nrow(cvDF)){
     roffMP[lcmMP == cvDF[i,"wrdclass"]] = cvDF[i,"cv"]  
   }
   return(roffMP)
