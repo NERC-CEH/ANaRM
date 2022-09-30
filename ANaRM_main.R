@@ -53,6 +53,7 @@ readOptions<-function(optionsFN,verbose=F){
       }else{
         if(tmp[1]=="baseDir" & is.na(tmp[2]) ) tmp[2] = getwd()
         assign( tmp[1], tmp[2], envir = .GlobalEnv)
+        if(tmp[1]=="lakeId"  )assign( tmp[1], as.numeric( strsplit( gsub( ")", "",gsub("c(", "",tmp[2],fixed=T),fixed=T),"," )[[1]] ), envir = .GlobalEnv) 
       }
     }
   }
@@ -62,7 +63,7 @@ readOptions<-function(optionsFN,verbose=F){
 
 ################### read options #####################
 optDF = readOptions(optionsFN,verbose=T)
-source(paste0(baseDir,"/adapted_NFM_rational_method_functions.R"))
+source(paste0(baseDir,"/ANaRM_functions.R"))
 
 #convert rain intensity to m^3 s^-1 (= mm/hr * 1/60^2 hr/s * 1/1000 m/mm )
 iRain = iRain*( (1/60^2) * (1/1000)) 
