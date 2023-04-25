@@ -1,5 +1,5 @@
 
-##### Adapted Nature-based-solutions Rational Method’ (ANaRM) - Main program file #####
+##### Adapted Nature-based-solutions Rational Method (ANaRM) - Main program file #####
 # 
 # Available for use under the terms of the included MIT licence. 
 # Please consider citing:  
