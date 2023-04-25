@@ -53,6 +53,7 @@ farlPower    = 3.445  # Peak flows in each grid cell are scaled by FARL^farlPowe
 #compulsory grids: 
 res       = 10                     # Resolution of all grids, units of metres assumed.
 outfFN    = input/LIDAR_outf1.tif  # Flow directions (downstream), esri format: 1,2,4,8,16,32,64,128 clockwise from East.
+removeEdgeCats = T  #This removes all cells downstream from the edge of either the outflow grid or cells with no outflow direction.
 lcmFN     = input/LC_28039.tif     # BASE land cover.
 
 # OUTF & CCAR grids:
