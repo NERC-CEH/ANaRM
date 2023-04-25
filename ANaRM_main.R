@@ -23,6 +23,7 @@
 
 #### Changes : ####
 # Apr23 : Added the option "removeEdgeCats". This removes all cells downstream from the edge of either the outflow grid or cells with no outflow direction.
+# Apr23 : Fixed bug occuring when multiple lakeId's specified in options file.
 
 ##### John R Wallbank, UK Centre for Ecology & Hydrology (UKCEH), johwal@ceh.ac.uk, April 2023.
 
