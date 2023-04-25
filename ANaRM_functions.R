@@ -1,4 +1,4 @@
-##### Adapted Nature-based-solutions Rational Method’ (ANaRM) - supporting functions #####
+##### Adapted Nature-based-solutions Rational Method (ANaRM) - supporting functions #####
 # 
 # Available for use under the terms of the included MIT licence. 
 # Please consider citing:  
